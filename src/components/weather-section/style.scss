@@ -1,0 +1,19 @@
+@import "../../App.scss";
+
+.weather-section {
+    width: 15vw;
+    min-height: 30vw;
+    border-radius: 15px;
+    background-color: $grey;
+    margin: 5vh 2.143vw;
+    &:first-child {
+        width: 25vw;
+    }
+    header {
+        display: flex;
+        justify-content: space-around;
+        img {
+            width: 5vw;
+        }
+    }
+}

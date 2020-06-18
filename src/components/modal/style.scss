@@ -52,7 +52,8 @@
     .content {
         margin-top: 25vh;
         width: 50vw;
-        height: 50vh;
+        height: auto;
+        min-height: 50vh;
         border-radius: 15px;
         background-color: $grey;
         color: $white;
