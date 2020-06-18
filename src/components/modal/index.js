@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import moment from 'moment';
 import './style.scss';
 
-function Modal(props) {
+function Modal({ text, buttonText, action, currentHour }) {
     const [bgStyle, setBgStyle] = useState("");
-    const currentHour = parseInt(moment().format("H"));
 
     useEffect(() => {
         if (currentHour >= 5 && currentHour < 10) {
@@ -25,10 +23,10 @@ function Modal(props) {
         <div className={`modal ${bgStyle}`}>
             <div className="content">
                 <div className="text">
-                    {props.text}
+                    {text}
                 </div>
-                <button onClick={props.action}>
-                    {props.buttonText}
+                <button onClick={action}>
+                    {buttonText}
                 </button>
             </div>
         </div>
