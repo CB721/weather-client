@@ -108,6 +108,7 @@ function App() {
   function getLocation() {
     // set that the user has confirmed to share their location to local storage
     localStorage.setItem("location-permission", true);
+    setLocationPermission(true);
     // get coordinates when the user clicks the enable button
     navigator
       .geolocation

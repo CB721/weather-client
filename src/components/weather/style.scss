@@ -1,0 +1,35 @@
+@import "../../App.scss";
+
+.weather {
+    width: 100vw;
+    transition: 0.5s;
+    &.condensed {
+        width: 25vw;
+        #expand-weather {
+            width: 20vw;
+            margin-left: 2.5vw;
+        }
+    }
+    .curr-weather {
+        display: flex;
+        justify-content: space-evenly;
+        &.mobile {
+            display: block;
+        }
+    }
+    #expand-weather {
+        width: 40vw;
+        border-radius: 15px;
+        background-color: $white;
+        color: $black;
+        height: 2rem;
+        margin-left: 30vw;
+        &:focus {
+            outline: none;
+        }
+        @media only screen and (max-width: 500px) {
+            margin-left: 7.5vw;
+            width: 85vw;
+        }
+    }
+}

@@ -21,14 +21,14 @@ function Weather({ weather, isToday }) {
                         {weather.name}
                     </p>
                 ) : (<div />)}
-                <p>
+                <p className="day">
                     {moment(new Date(weather.dt * 1000)).format('ddd')}
                 </p>
             </header>
             <section className="weather-details">
                 <p className="weather-char">Temp: {weather.main.temp}&#176;F</p>
                 {isToday ? (
-                    <p>Feels Like: {weather.main.feels_like}&#176;F</p>
+                    <p className="weather-char">Feels Like: {weather.main.feels_like}&#176;F</p>
                 ) : (<div />)}
                 {isExpand || isToday ? (
                     <div>
@@ -40,20 +40,20 @@ function Weather({ weather, isToday }) {
                 {isToday ? (
                     <div className="max-min-temp">
                         <p className="weather-char">
-                            Low Temp: {weather.main.temp_min}
+                            Low Temp: {weather.main.temp_min}&#176;F
                         </p>
                         <p className="weather-char">
-                            High Temp: {weather.main.temp_max}
+                            High Temp: {weather.main.temp_max}&#176;F
                         </p>
                     </div>
                 ) : <div />}
                 {isToday ? (
                     <div className="sunrise-sunset">
                         <p className="weather-char">
-                            Sunrise: {moment(weather.sys.sunrise).format('h:mm a')}
+                            Sunrise: {new Date(weather.sys.sunrise * 1000).toLocaleString('en-US').split(", ")[1]}
                         </p>
                         <p className="weather-char">
-                            Sunset: {moment(weather.sys.sunset).format('h:mm a')}
+                            Sunset: {new Date(weather.sys.sunset * 1000).toLocaleString('en-US').split(", ")[1]}
                         </p>
                     </div>
                 ) : <div />}

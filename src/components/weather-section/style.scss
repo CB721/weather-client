@@ -2,7 +2,7 @@
 
 .weather-section {
     width: 12vw;
-    min-height: 30vw;
+    // min-height: 30vw;
     border-radius: 15px;
     background-color: $grey;
     margin: 5vh 2vw;
@@ -36,7 +36,7 @@
                 width: 15vw;
             }
         }
-        .city {
+        .city, .day {
             font-size: 1rem;
             padding: 1vh 0.5vw;
         }
@@ -50,7 +50,8 @@
         .max-min-temp, .sunrise-sunset {
             display: flex;
             justify-content: space-evenly;
-            p {
+            .weather-char {
+                padding: 0.5rem;
                 text-align: center;
             }
         }
