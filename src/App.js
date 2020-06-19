@@ -44,9 +44,7 @@ function App() {
           //
           let i = 7;
           while (i < 48) {
-            console.log(i);
-            if (i >=40) {
-              console.log(nextSixDays);
+            if (i >= 40) {
               setForecast(nextSixDays);
             } else if (list[i]) {
               nextSixDays.push(list[i]);
@@ -119,12 +117,14 @@ function App() {
         />
       ) : (<div />)}
       {weather && forecast.length ? (
-        <div className="curr-weather">
+        <div className={`curr-weather ${window.screen.width < 500 ? 'mobile' : ''}`}>
           <WeatherSection
             weather={weather}
+            isToday={true}
           />
           {forecast.map(day => (
             <WeatherSection
+              key={day.dt}
               weather={day}
             />
           ))}

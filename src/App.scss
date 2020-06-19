@@ -5,4 +5,7 @@ $white: #d7d4d4;
 .curr-weather {
     display: flex;
     justify-content: space-evenly;
+    &.mobile {
+        display: block;
+    }
 }

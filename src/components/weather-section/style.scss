@@ -1,19 +1,58 @@
 @import "../../App.scss";
 
 .weather-section {
-    width: 15vw;
+    width: 12vw;
     min-height: 30vw;
     border-radius: 15px;
     background-color: $grey;
-    margin: 5vh 2.143vw;
+    margin: 5vh 2vw;
+    color: $white;
     &:first-child {
-        width: 25vw;
+        width: 21vw;
+    }
+    @media only screen and (min-width: 500px) {
+        transition: 0.5s;
+        &.expand {
+            width: 20vw;
+        }
+    }
+    @media only screen and (max-width: 500px) {
+        transition: 0.5s;
+        width: 96vw;
+        &:first-child {
+            width: 96vw;
+            min-height: 50vh;
+        }
+        &.expand {
+            height: 35vh;
+        }
     }
     header {
         display: flex;
         justify-content: space-around;
         img {
             width: 5vw;
+            @media only screen and (max-width: 500px) {
+                width: 15vw;
+            }
+        }
+        p {
+            font-size: 1rem;
+            padding: 1vh 0.5vw;
+        }
+    }
+    section {
+        display: block;
+        p {
+            text-align: center;
+            text-transform: capitalize;
+        }
+        .max-min-temp, .sunrise-sunset {
+            display: flex;
+            justify-content: space-evenly;
+            p {
+                text-align: center;
+            }
         }
     }
 }
