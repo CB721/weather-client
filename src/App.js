@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Modal from './components/modal';
 import Weather from './components/weather';
-import WeatherSection from './components/weather-section';
+import Backgrounds from './components/backgrounds';
 import API from './utils/api';
 import moment from 'moment';
 import './App.scss';
@@ -13,7 +13,7 @@ function App() {
   const [long, setLong] = useState();
   const [modalMessage, setModalMessage] = useState("Please enable your location services to continue.");
   const [locationPermission, setLocationPermission] = useState(false);
-  const [timeOfDay, setTimeOfDay] = useState("night");
+  const [timeOfDay, setTimeOfDay] = useState("sunrise");
 
   const currentHour = parseInt(moment().format("H"));
 
@@ -91,18 +91,18 @@ function App() {
     if (savedWeather) {
       setWeather(savedWeather);
     }
-    // if (currentHour >= 5 && currentHour < 10) {
-    //   setTimeOfDay("sunrise");
-    // }
-    // if (currentHour >= 10 && currentHour < 17) {
-    //   setTimeOfDay("day");
-    // }
-    // if (currentHour >= 17 && currentHour < 21) {
-    //   setTimeOfDay("evening");
-    // }
-    // if ((currentHour >= 21 && currentHour < 25) || (currentHour >= 0 && currentHour < 5)) {
-    //   setTimeOfDay("night");
-    // }
+    if (currentHour >= 5 && currentHour < 10) {
+      setTimeOfDay("sunrise");
+    }
+    if (currentHour >= 10 && currentHour < 17) {
+      setTimeOfDay("day");
+    }
+    if (currentHour >= 17 && currentHour < 21) {
+      setTimeOfDay("evening");
+    }
+    if ((currentHour >= 21 && currentHour < 25) || (currentHour >= 0 && currentHour < 5)) {
+      setTimeOfDay("night");
+    }
   }, []);
 
   function getLocation() {
@@ -131,21 +131,24 @@ function App() {
   }
 
   return (
-    <div className={`app ${timeOfDay}`}>
-      {!locationPermission ? (
-        <Modal
-          text={modalMessage}
-          action={getLocation}
-          buttonText="Enable"
-          bgStyle={timeOfDay}
-        />
-      ) : (<div />)}
-      {weather && forecast && forecast.length ? (
-        <Weather
-          today={weather}
-          forecast={forecast}
-        />
-      ) : (<div />)}
+    <div className="app">
+      <Backgrounds
+        timeOfDay={timeOfDay}
+      />
+        {!locationPermission ? (
+          <Modal
+            text={modalMessage}
+            action={getLocation}
+            buttonText="Enable"
+            bgStyle={timeOfDay}
+          />
+        ) : (<div />)}
+        {weather && forecast && forecast.length ? (
+          <Weather
+            today={weather}
+            forecast={forecast}
+          />
+        ) : (<div />)}
     </div>
   );
 }
