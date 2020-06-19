@@ -34,21 +34,26 @@ function App() {
     }
   }, [lat, long]);
   useEffect(() => {
-    // once the current day's weather has been received, get the rest of the week
-    if (weather) {
+    const lastUpdate = parseInt(localStorage.getItem("hour"));
+    const savedForecast = JSON.parse(localStorage.getItem("forecast"));
+    // once the current day's weather has been received, get the rest of the week as long as it hasn't already been updated for that hour
+    if (weather && (currentHour !== lastUpdate || !savedForecast || !savedForecast.length)) {
       API.getForecastWeather(long, lat)
         .then(res => {
           // list of all weather forecast
           const { list } = res.data;
           // keep a list of each day
-          const nextSixDays = [];
+          const nextFiveDays = [];
           //
           let i = 7;
           while (i < 48) {
             if (i >= 40) {
-              setForecast(nextSixDays);
+              // save forecast to state
+              setForecast(nextFiveDays);
+              // save forecast to local storage
+              localStorage.setItem("forecast", JSON.stringify(nextFiveDays));
             } else if (list[i]) {
-              nextSixDays.push(list[i]);
+              nextFiveDays.push(list[i]);
             }
             // increase by 8 to get to the next forecast in 24 hours
             i += 8;
@@ -57,6 +62,10 @@ function App() {
         .catch(err => {
           console.log(err);
         });
+    } else {
+      // if the forecast has been saved and it is still within the same hour from the last update
+      // save forecast to state
+      setForecast(savedForecast);
     }
   }, [weather]);
   useEffect(() => {
@@ -118,7 +127,7 @@ function App() {
         />
       ) : (<div />)}
       {weather && forecast.length ? (
-        <Weather 
+        <Weather
           today={weather}
           forecast={forecast}
         />
