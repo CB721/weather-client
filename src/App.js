@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Modal from './components/modal';
+import Weather from './components/weather';
 import WeatherSection from './components/weather-section';
 import API from './utils/api';
 import moment from 'moment';
@@ -117,18 +118,10 @@ function App() {
         />
       ) : (<div />)}
       {weather && forecast.length ? (
-        <div className={`curr-weather ${window.screen.width < 500 ? 'mobile' : ''}`}>
-          <WeatherSection
-            weather={weather}
-            isToday={true}
-          />
-          {forecast.map(day => (
-            <WeatherSection
-              key={day.dt}
-              weather={day}
-            />
-          ))}
-        </div>
+        <Weather 
+          today={weather}
+          forecast={forecast}
+        />
       ) : (<div />)}
     </div>
   );

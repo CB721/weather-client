@@ -3,7 +3,6 @@ import moment from 'moment';
 import './style.scss';
 
 function Weather({ weather, isToday }) {
-    console.log(weather);
     const [isExpand, setIsExpand] = useState(false);
     function expand(event) {
         event.preventDefault();
