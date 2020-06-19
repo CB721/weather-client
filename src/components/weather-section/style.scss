@@ -27,23 +27,23 @@
             height: 35vh;
         }
     }
-    header {
+    .weat-sect-head {
         display: flex;
         justify-content: space-around;
-        img {
+        .weather-icon {
             width: 5vw;
             @media only screen and (max-width: 500px) {
                 width: 15vw;
             }
         }
-        p {
+        .city {
             font-size: 1rem;
             padding: 1vh 0.5vw;
         }
     }
-    section {
+    .weather-details {
         display: block;
-        p {
+        .weather-char {
             text-align: center;
             text-transform: capitalize;
         }

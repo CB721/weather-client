@@ -10,13 +10,14 @@ function Weather({ weather, isToday }) {
     }
     return (
         <div className={`weather-section ${isExpand ? 'expand' : ''}`} onClick={(e) => expand(e)}>
-            <header>
+            <header className="weat-sect-head">
                 <img
                     src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
                     alt={weather.weather[0].description}
+                    className="weather-icon"
                 />
                 {weather.name ? (
-                    <p>
+                    <p className="city">
                         {weather.name}
                     </p>
                 ) : (<div />)}
@@ -24,34 +25,34 @@ function Weather({ weather, isToday }) {
                     {moment(new Date(weather.dt * 1000)).format('ddd')}
                 </p>
             </header>
-            <section>
-                <p>Temp: {weather.main.temp}&#176;F</p>
+            <section className="weather-details">
+                <p className="weather-char">Temp: {weather.main.temp}&#176;F</p>
                 {isToday ? (
                     <p>Feels Like: {weather.main.feels_like}&#176;F</p>
                 ) : (<div />)}
                 {isExpand || isToday ? (
                     <div>
-                        <p>Description: {weather.weather[0].description}</p>
-                        <p>Humidity: {weather.main.humidity}%</p>
-                        <p>Wind: {weather.wind.speed}MPH</p>
+                        <p className="weather-char">Description: {weather.weather[0].description}</p>
+                        <p className="weather-char">Humidity: {weather.main.humidity}%</p>
+                        <p className="weather-char">Wind: {weather.wind.speed}MPH</p>
                     </div>
                 ) : (<div />)}
                 {isToday ? (
                     <div className="max-min-temp">
-                        <p>
+                        <p className="weather-char">
                             Low Temp: {weather.main.temp_min}
                         </p>
-                        <p>
+                        <p className="weather-char">
                             High Temp: {weather.main.temp_max}
                         </p>
                     </div>
                 ) : <div />}
                 {isToday ? (
                     <div className="sunrise-sunset">
-                        <p>
+                        <p className="weather-char">
                             Sunrise: {moment(weather.sys.sunrise).format('h:mm a')}
                         </p>
-                        <p>
+                        <p className="weather-char">
                             Sunset: {moment(weather.sys.sunset).format('h:mm a')}
                         </p>
                     </div>
