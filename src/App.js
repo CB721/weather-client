@@ -13,12 +13,13 @@ function App() {
   const [long, setLong] = useState();
   const [modalMessage, setModalMessage] = useState("Please enable your location services to continue.");
   const [locationPermission, setLocationPermission] = useState(false);
+  const [timeOfDay, setTimeOfDay] = useState("sunrise");
 
   const currentHour = parseInt(moment().format("H"));
 
   useEffect(() => {
-    // if both a latitude and longitude have been provided
-    if (lat && long) {
+    // if both a latitude and longitude have been provided and the user has given permission to user location
+    if (lat && long && locationPermission) {
       // make request to get weather for the users location
       API.getTodayWeather(long, lat)
         .then(res => {
@@ -36,8 +37,8 @@ function App() {
   useEffect(() => {
     const lastUpdate = parseInt(localStorage.getItem("hour"));
     const savedForecast = JSON.parse(localStorage.getItem("forecast"));
-    // once the current day's weather has been received, get the rest of the week as long as it hasn't already been updated for that hour
-    if (weather && (currentHour !== lastUpdate || !savedForecast || !savedForecast.length)) {
+    // once the current day's weather has been received, get the rest of the week as long as it hasn't already been updated for that hour and the user has given permission to use the location
+    if (weather && (currentHour !== lastUpdate || !savedForecast || !savedForecast.length) && locationPermission) {
       API.getForecastWeather(long, lat)
         .then(res => {
           // list of all weather forecast
@@ -90,6 +91,18 @@ function App() {
     if (savedWeather) {
       setWeather(savedWeather);
     }
+    if (currentHour >= 5 && currentHour < 10) {
+      setTimeOfDay("sunrise");
+    }
+    if (currentHour >= 10 && currentHour < 17) {
+      setTimeOfDay("day");
+    }
+    if (currentHour >= 17 && currentHour < 21) {
+      setTimeOfDay("evening");
+    }
+    if ((currentHour >= 21 && currentHour < 25) || (currentHour >= 0 && currentHour < 5)) {
+      setTimeOfDay("night");
+    }
   }, []);
 
   function getLocation() {
@@ -123,10 +136,10 @@ function App() {
           text={modalMessage}
           action={getLocation}
           buttonText="Enable"
-          currentHour={currentHour}
+          bgStyle={timeOfDay}
         />
       ) : (<div />)}
-      {weather && forecast.length ? (
+      {weather && forecast && forecast.length ? (
         <Weather
           today={weather}
           forecast={forecast}
