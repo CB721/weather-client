@@ -3,18 +3,20 @@ import { ReactComponent as DarkCloud } from "./images/dark-cloud.svg";
 import { ReactComponent as LightCloud } from "./images/light-cloud.svg";
 import './style.scss';
 
-function CurrWeather({ timeOfDay, weatherDesc }) {
+function CurrWeather({ timeOfDay, weather }) {
     const [lightClouds, setLightClouds] = useState(false);
     const [darkClouds, setDarkClouds] = useState(false);
     const [rain, setRain] = useState(false);
     const [mist, setMist] = useState(false);
     const [snow, setSnow] = useState(false);
     const [stars, setStars] = useState(false);
+    const [cloudCount, setCloudCount] = useState(0);
+
     useEffect(() => {
         if (timeOfDay === "night") {
             setStars(true);
         }
-        const lowerWeatherDesc = weatherDesc.toLowerCase();
+        const lowerWeatherDesc = weather.weather[0].description.toLowerCase();
         if (lowerWeatherDesc.includes('snow')) {
             setSnow(true);
         }
@@ -32,46 +34,54 @@ function CurrWeather({ timeOfDay, weatherDesc }) {
             setDarkClouds(true);
             setLightClouds(false);
         }
-    }, [weatherDesc, timeOfDay]);
+        setCloudCount(Math.ceil(weather.clouds.all / 10) + 4);
+    }, [weather, timeOfDay]);
     return (<div>
         {darkClouds ? (
             <div>
-                <DarkCloud className="clouds" />
-                <DarkCloud className="clouds" />
-                <DarkCloud className="clouds" />
-                <DarkCloud className="clouds" />
-                <DarkCloud className="clouds" />
-                <DarkCloud className="clouds" />
-                <DarkCloud className="clouds" />
-                <DarkCloud className="clouds" />
-                <DarkCloud className="clouds" />
-                <DarkCloud className="clouds" />
-                <DarkCloud className="clouds" />
-                <DarkCloud className="clouds" />
-                <DarkCloud className="clouds" />
-                <DarkCloud className="clouds" />
-                <DarkCloud className="clouds" />
+                {[...Array(cloudCount)].map((cloud, index) => (
+                    <DarkCloud key={index} className="clouds" />
+                ))}
             </div>
         ) : lightClouds ? (
             <div>
-                <LightCloud className="clouds" />
-                <LightCloud className="clouds" />
-                <LightCloud className="clouds" />
-                <LightCloud className="clouds" />
-                <LightCloud className="clouds" />
-                <LightCloud className="clouds" />
-                <LightCloud className="clouds" />
-                <LightCloud className="clouds" />
-                <LightCloud className="clouds" />
-                <LightCloud className="clouds" />
-                <LightCloud className="clouds" />
-                <LightCloud className="clouds" />
-                <LightCloud className="clouds" />
-                <LightCloud className="clouds" />
-                <LightCloud className="clouds" />
+                {[...Array(cloudCount)].map((cloud, index) => (
+                    <LightCloud key={index} className="clouds" />
+                ))}
             </div>
         ) : (<div />)}
-
+        {/* {rain ? (<div>
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+            <div className="rain" />
+        </div>) : (<div />)} */}
     </div>);
 }
 

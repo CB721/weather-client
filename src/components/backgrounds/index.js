@@ -10,7 +10,7 @@ function Backgrounds({ timeOfDay, weather }) {
                 <div className="day-items">
                     <div className={`sun ${timeOfDay}`} />
                     <CurrWeather
-                    weatherDesc={weather.weather[0].description}
+                    weather={weather}
                     timeOfDay={timeOfDay}
                 />
                 </div>
@@ -18,7 +18,7 @@ function Backgrounds({ timeOfDay, weather }) {
                 <div className="day-items">
                     <div className={`sun ${timeOfDay}`} />
                     <CurrWeather
-                    weatherDesc={weather.weather[0].description}
+                    weather={weather}
                     timeOfDay={timeOfDay}
                 />
                 </div>
@@ -26,14 +26,14 @@ function Backgrounds({ timeOfDay, weather }) {
                 <div className="day-items">
                     <div className={`sun ${timeOfDay}`} />
                     <CurrWeather
-                    weatherDesc={weather.weather[0].description}
+                    weather={weather}
                     timeOfDay={timeOfDay}
                 />
                 </div>
             ) : (<div className="day-items">
                 <div className={`sun ${timeOfDay}`} />
                 <CurrWeather
-                    weatherDesc={weather.weather[0].description}
+                    weather={weather}
                     timeOfDay={timeOfDay}
                 />
             </div>)}

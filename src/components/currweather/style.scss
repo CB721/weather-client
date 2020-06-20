@@ -3,82 +3,75 @@
 @mixin clouds {
     &:first-child {
         top: 5%;
-        @include cloud-animation(38s, 1.5s, 34vh, -10vw, 110vw, cloud-one);
+        @include cloud-animation(53s, 39vh, -10vw, 110vw, cloud-one);
     }
     &:nth-child(2) {
         top: 12%;
-        @include cloud-animation(31s, 7.5s, 37vh, 110vw, -10vw, cloud-two);
+        @include cloud-animation(46s, 42vh, 110vw, -10vw, cloud-two);
     }
     &:nth-child(3) {
         top: -2%;
-        @include cloud-animation(28s, 6s, 39vh, -10vw, 110vw, cloud-three);
+        @include cloud-animation(43s, 44vh, -10vw, 110vw, cloud-three);
     }
     &:nth-child(4) {
         top: 0.2%;
-        @include cloud-animation(34s, 0s, 33vh, -10vw, 110vw, cloud-four);
+        @include cloud-animation(49s, 37vh, -10vw, 110vw, cloud-four);
     }
     &:nth-child(5) {
         top: 0.7%;
-        @include cloud-animation(30s, 4s, 32vh, 110vw, -10vw, cloud-five);
+        @include cloud-animation(45s, 38vh, 110vw, -10vw, cloud-five);
     }
     &:nth-child(6) {
         top: 8.4%;
-        @include cloud-animation(37s, 4.5s, 37vh, 110vw, -10vw, cloud-six);
+        @include cloud-animation(52s, 41vh, 110vw, -10vw, cloud-six);
     }
     &:nth-child(7) {
         top: -2.5%;
-        @include cloud-animation(42s, 5s, 47vh, -10vw, 110vw, cloud-seven);
+        @include cloud-animation(57s, 52vh, -10vw, 110vw, cloud-seven);
     }
     &:nth-child(8) {
         top: 3%;
-        @include cloud-animation(47s, 7.5s, 44vh, 110vw, -10vw, cloud-eight);
+        @include cloud-animation(62s, 49vh, 110vw, -10vw, cloud-eight);
     }
     &:nth-child(9) {
         top: 1.4%;
-        @include cloud-animation(49s, 1.5s, 40vh, -10vw, 110vw, cloud-nine);
+        @include cloud-animation(64s, 45vh, -10vw, 110vw, cloud-nine);
     }
     &:nth-child(10) {
         top: 11%;
-        @include cloud-animation(83s, 3s, 46vh, 110vw, -10vw, cloud-ten);
+        @include cloud-animation(98s, 51vh, 110vw, -10vw, cloud-ten);
     }
     &:nth-child(11) {
         top: -4%;
-        @include cloud-animation(61s, 0.5s, 50vh, 110vw, -10vw, cloud-eleven);
+        @include cloud-animation(76s, 55vh, 110vw, -10vw, cloud-eleven);
     }
     &:nth-child(12) {
         top: 0%;
-        @include cloud-animation(33s, 4s, 32vh, 110vw, -10vw, cloud-twelve);
+        @include cloud-animation(38s, 36vh, 110vw, -10vw, cloud-twelve);
     }
     &:nth-child(13) {
         top: 3.5%;
-        @include cloud-animation(46s, 0s, 53vh, -10vw, 110vw, cloud-thirteen);
+        @include cloud-animation(61s, 58vh, -10vw, 110vw, cloud-thirteen);
     }
     &:nth-child(14) {
         top: 1.5%;
-        @include cloud-animation(67s, 1s, 48vh, 110vw, -10vw, cloud-fourteen);
+        @include cloud-animation(82s, 53vh, 110vw, -10vw, cloud-fourteen);
     }
-    &:last-child {
+    &:nth-child(15) {
         top: 8%;
-        @include cloud-animation(35s, 0s, 36vh, 110vw, -10vw, cloud-last);
+        @include cloud-animation(50s, 39vh, 110vw, -10vw, cloud-last);
     }
 }
-@mixin cloud-animation($length, $delay, $size, $start, $end, $anim) {
+@mixin cloud-animation($length, $size, $start, $end, $anim) {
     height: $size;
     animation: $anim $length ease forwards infinite;
-    animation-delay: $delay;
     @keyframes #{$anim} {
         0% {
             left: $start;
             opacity: 0;
         }
-        10% {
-            opacity: 0.5;
-        }
         50% {
             opacity: 1;
-        }
-        90% {
-            opacity: 0.5;
         }
         100% {
             left: $end;
@@ -92,3 +85,40 @@
     z-index: 50;
     @include clouds();
 }
+// .rain {
+//     background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+//     height: 50px;
+//     position: absolute;
+//     width: 1px;
+// }
+
+// $rain: 150;
+
+// @for $i from 1 through $rain {
+//     $top: (random(50) + 50) * 1%;
+//     $left: random(100) * 1%;
+//     $opacity: (random(30) + 30) * 0.01;
+//     $delay: random(20) - 1s;
+
+//     .rain:nth-of-type(#{$i}) {
+//         animation-name: rain-#{$i};
+//         animation-delay: $delay;
+//         animation-duration: random(6) + 4s;
+//         animation-iteration-count: infinite;
+//         left: $left;
+//         opacity: $opacity;
+//         top: -$top;
+//     }
+
+//     @keyframes rain-#{$i} {
+//         0% {
+//             left: $left;
+//             opacity: $opacity;
+//             top: -$top;
+//         }
+//         100% {
+//             opacity: 0;
+//             top: $top + 40%;
+//         }
+//     }
+// }
