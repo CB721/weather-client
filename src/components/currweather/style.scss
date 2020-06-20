@@ -1,0 +1,98 @@
+@import "../../App.scss";
+
+@mixin clouds {
+    &:first-child {
+        top: 5%;
+        height: 19vh;
+        animation: moveclouds 30s ease forwards infinite;
+        animation-delay: 3s;
+    }
+    &:nth-child(2) {
+        top: 15%;
+        height: 21vh;
+        animation: moveclouds 23s ease forwards infinite;
+        animation-delay: 15s;
+    }
+    &:nth-child(3) {
+        top: 2%;
+        height: 24vh;
+        animation: moveclouds 32s ease forwards infinite;
+        animation-delay: 12s;
+    }
+    &:nth-child(4) {
+        top: 12%;
+        height: 18vh;
+        animation: moveclouds 26s ease forwards infinite;
+    }
+    &:nth-child(5) {
+        top: 32%;
+        height: 17vh;
+        animation: moveclouds 22s ease forwards infinite;
+        animation-delay: 7s;
+    }
+    &:nth-child(6) {
+        top: 26%;
+        height: 22vh;
+        animation: moveclouds 24s ease forwards infinite;
+        animation-delay: 9s;
+    }
+    &:nth-child(7) {
+        top: 6%;
+        height: 32vh;
+        animation: moveclouds 34s ease forwards infinite;
+        animation-delay: 9s;
+    }
+    &:nth-child(8) {
+        top: 8%;
+        height: 29vh;
+        animation: moveclouds 32s ease forwards infinite;
+        animation-delay: 15s;
+    }
+    &:nth-child(9) {
+        top: 34%;
+        height: 25vh;
+        animation: moveclouds 39s ease forwards infinite;
+        animation-delay: 3s;
+    }
+    &:nth-child(10) {
+        top: 21%;
+        height: 29vh;
+        animation: moveclouds 43s ease forwards infinite;
+        animation-delay: 9s;
+    }
+    &:last-child {
+        top: 8%;
+        height: 19vh;
+        animation: moveclouds 28s ease forwards infinite;
+    }
+}
+
+.clouds {
+    position: absolute;
+    opacity: 0;
+    z-index: 50;
+    @include clouds();
+}
+
+@keyframes moveclouds {
+    0% {
+        left: -10vw;
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    65% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 0.5;
+    }
+    100% {
+        left: 110vw;
+        opacity: 0;
+    }
+}
