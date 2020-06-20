@@ -3,96 +3,92 @@
 @mixin clouds {
     &:first-child {
         top: 5%;
-        height: 19vh;
-        animation: moveclouds 30s ease forwards infinite;
-        animation-delay: 3s;
+        @include cloud-animation(38s, 1.5s, 34vh, -10vw, 110vw, cloud-one);
     }
     &:nth-child(2) {
-        top: 15%;
-        height: 21vh;
-        animation: moveclouds 23s ease forwards infinite;
-        animation-delay: 15s;
+        top: 12%;
+        @include cloud-animation(31s, 7.5s, 37vh, 110vw, -10vw, cloud-two);
     }
     &:nth-child(3) {
-        top: 2%;
-        height: 24vh;
-        animation: moveclouds 32s ease forwards infinite;
-        animation-delay: 12s;
+        top: -2%;
+        @include cloud-animation(28s, 6s, 39vh, -10vw, 110vw, cloud-three);
     }
     &:nth-child(4) {
-        top: 12%;
-        height: 18vh;
-        animation: moveclouds 26s ease forwards infinite;
+        top: 0.2%;
+        @include cloud-animation(34s, 0s, 33vh, -10vw, 110vw, cloud-four);
     }
     &:nth-child(5) {
-        top: 32%;
-        height: 17vh;
-        animation: moveclouds 22s ease forwards infinite;
-        animation-delay: 7s;
+        top: 0.7%;
+        @include cloud-animation(30s, 4s, 32vh, 110vw, -10vw, cloud-five);
     }
     &:nth-child(6) {
-        top: 26%;
-        height: 22vh;
-        animation: moveclouds 24s ease forwards infinite;
-        animation-delay: 9s;
+        top: 8.4%;
+        @include cloud-animation(37s, 4.5s, 37vh, 110vw, -10vw, cloud-six);
     }
     &:nth-child(7) {
-        top: 6%;
-        height: 32vh;
-        animation: moveclouds 34s ease forwards infinite;
-        animation-delay: 9s;
+        top: -2.5%;
+        @include cloud-animation(42s, 5s, 47vh, -10vw, 110vw, cloud-seven);
     }
     &:nth-child(8) {
-        top: 8%;
-        height: 29vh;
-        animation: moveclouds 32s ease forwards infinite;
-        animation-delay: 15s;
+        top: 3%;
+        @include cloud-animation(47s, 7.5s, 44vh, 110vw, -10vw, cloud-eight);
     }
     &:nth-child(9) {
-        top: 34%;
-        height: 25vh;
-        animation: moveclouds 39s ease forwards infinite;
-        animation-delay: 3s;
+        top: 1.4%;
+        @include cloud-animation(49s, 1.5s, 40vh, -10vw, 110vw, cloud-nine);
     }
     &:nth-child(10) {
-        top: 21%;
-        height: 29vh;
-        animation: moveclouds 43s ease forwards infinite;
-        animation-delay: 9s;
+        top: 11%;
+        @include cloud-animation(83s, 3s, 46vh, 110vw, -10vw, cloud-ten);
+    }
+    &:nth-child(11) {
+        top: -4%;
+        @include cloud-animation(61s, 0.5s, 50vh, 110vw, -10vw, cloud-eleven);
+    }
+    &:nth-child(12) {
+        top: 0%;
+        @include cloud-animation(33s, 4s, 32vh, 110vw, -10vw, cloud-twelve);
+    }
+    &:nth-child(13) {
+        top: 3.5%;
+        @include cloud-animation(46s, 0s, 53vh, -10vw, 110vw, cloud-thirteen);
+    }
+    &:nth-child(14) {
+        top: 1.5%;
+        @include cloud-animation(67s, 1s, 48vh, 110vw, -10vw, cloud-fourteen);
     }
     &:last-child {
         top: 8%;
-        height: 19vh;
-        animation: moveclouds 28s ease forwards infinite;
+        @include cloud-animation(35s, 0s, 36vh, 110vw, -10vw, cloud-last);
     }
 }
-
+@mixin cloud-animation($length, $delay, $size, $start, $end, $anim) {
+    height: $size;
+    animation: $anim $length ease forwards infinite;
+    animation-delay: $delay;
+    @keyframes #{$anim} {
+        0% {
+            left: $start;
+            opacity: 0;
+        }
+        10% {
+            opacity: 0.5;
+        }
+        50% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 0.5;
+        }
+        100% {
+            left: $end;
+            opacity: 0;
+        }
+    }
+}
 .clouds {
     position: absolute;
     opacity: 0;
     z-index: 50;
     @include clouds();
-}
-
-@keyframes moveclouds {
-    0% {
-        left: -10vw;
-        opacity: 0;
-    }
-    10% {
-        opacity: 0.5;
-    }
-    50% {
-        opacity: 1;
-    }
-    65% {
-        opacity: 1;
-    }
-    90% {
-        opacity: 0.5;
-    }
-    100% {
-        left: 110vw;
-        opacity: 0;
-    }
 }

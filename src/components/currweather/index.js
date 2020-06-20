@@ -15,9 +15,6 @@ function CurrWeather({ timeOfDay, weatherDesc }) {
             setStars(true);
         }
         const lowerWeatherDesc = weatherDesc.toLowerCase();
-        if (lowerWeatherDesc.includes('rain') || lowerWeatherDesc.includes('drizzle') || lowerWeatherDesc.includes('thunderstorm')) {
-            setRain(true);
-        }
         if (lowerWeatherDesc.includes('snow')) {
             setSnow(true);
         }
@@ -29,6 +26,11 @@ function CurrWeather({ timeOfDay, weatherDesc }) {
         }
         if (lowerWeatherDesc.includes('clouds') && (timeOfDay === "day" || timeOfDay === "sunrise")) {
             setLightClouds(true);
+        }
+        if (lowerWeatherDesc.includes('rain') || lowerWeatherDesc.includes('drizzle') || lowerWeatherDesc.includes('thunderstorm')) {
+            setRain(true);
+            setDarkClouds(true);
+            setLightClouds(false);
         }
     }, [weatherDesc, timeOfDay]);
     return (<div>
@@ -45,9 +47,18 @@ function CurrWeather({ timeOfDay, weatherDesc }) {
                 <DarkCloud className="clouds" />
                 <DarkCloud className="clouds" />
                 <DarkCloud className="clouds" />
+                <DarkCloud className="clouds" />
+                <DarkCloud className="clouds" />
+                <DarkCloud className="clouds" />
+                <DarkCloud className="clouds" />
             </div>
         ) : lightClouds ? (
             <div>
+                <LightCloud className="clouds" />
+                <LightCloud className="clouds" />
+                <LightCloud className="clouds" />
+                <LightCloud className="clouds" />
+                <LightCloud className="clouds" />
                 <LightCloud className="clouds" />
                 <LightCloud className="clouds" />
                 <LightCloud className="clouds" />
