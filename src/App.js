@@ -3,6 +3,7 @@ import Modal from './components/modal';
 import Weather from './components/weather';
 import Backgrounds from './components/backgrounds';
 import Header from './components/header';
+import Clock from './components/clock';
 import API from './utils/api';
 import moment from 'moment';
 import './App.scss';
@@ -150,6 +151,7 @@ function App() {
       <Header
         name='User'
       />
+      <Clock />
       {weather && forecast && forecast.length ? (
         <Weather
           today={weather}
