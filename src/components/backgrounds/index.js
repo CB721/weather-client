@@ -8,7 +8,7 @@ function Backgrounds({ timeOfDay, weather }) {
         <div className={`bg ${timeOfDay}`}>
             {timeOfDay === 'sunrise' ? (
                 <div className="day-items">
-                    <div className={`sun ${timeOfDay}`} />
+                    <div className={`sun ${timeOfDay} `} />
                     <CurrWeather
                     weather={weather}
                     timeOfDay={timeOfDay}

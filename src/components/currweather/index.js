@@ -50,38 +50,16 @@ function CurrWeather({ timeOfDay, weather }) {
                 ))}
             </div>
         ) : (<div />)}
-        {/* {rain ? (<div>
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-            <div className="rain" />
-        </div>) : (<div />)} */}
+        {rain ? (<div>
+            {[...Array(150)].map((rain, index) => (
+                <div key={index} className="rain" />
+            ))}
+        </div>) : (<div />)}
+        {snow ? (<div>
+            {[...Array(300)].map((rain, index) => (
+                <div key={index} className="snow" />
+            ))}
+        </div>) : (<div />)}
     </div>);
 }
 
