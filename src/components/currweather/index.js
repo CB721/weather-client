@@ -56,8 +56,11 @@ function CurrWeather({ timeOfDay, weather }) {
             ))}
         </div>) : (<div />)}
         {snow ? (<div>
-            {[...Array(300)].map((rain, index) => (
-                <div key={index} className="snow" />
+            {[...Array(100)].map((snow, index) => (
+                <div key={index} className="snow">❆</div>
+            ))}
+            {[...Array(100)].map((snow, index) => (
+                <div key={index} className="snow">❅</div>
             ))}
         </div>) : (<div />)}
     </div>);

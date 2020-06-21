@@ -146,12 +146,12 @@ function App() {
           bgStyle={timeOfDay}
         />
       ) : (<div />)}
-      {weather && forecast && forecast.length ? (
+      {/* {weather && forecast && forecast.length ? (
         <Weather
           today={weather}
           forecast={forecast}
         />
-      ) : (<div />)}
+      ) : (<div />)} */}
     </div>
   );
 }
