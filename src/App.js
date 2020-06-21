@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Modal from './components/modal';
 import Weather from './components/weather';
 import Backgrounds from './components/backgrounds';
+import Header from './components/header';
 import API from './utils/api';
 import moment from 'moment';
 import './App.scss';
@@ -33,7 +34,7 @@ function App() {
           console.log(err);
         });
     }
-  }, [lat, long]);
+  }, [lat, long, locationPermission]);
   useEffect(() => {
     const lastUpdate = parseInt(localStorage.getItem("hour"));
     const savedForecast = JSON.parse(localStorage.getItem("forecast"));
@@ -146,12 +147,15 @@ function App() {
           bgStyle={timeOfDay}
         />
       ) : (<div />)}
-      {/* {weather && forecast && forecast.length ? (
+      <Header
+        name='User'
+      />
+      {weather && forecast && forecast.length ? (
         <Weather
           today={weather}
           forecast={forecast}
         />
-      ) : (<div />)} */}
+      ) : (<div />)}
     </div>
   );
 }

@@ -1,0 +1,54 @@
+@import "../../App.scss";
+
+.welcome-header {
+    width: 100vw;
+    text-align: center;
+    height: 10vh;
+    line-height: 10vh;
+    font-size: 2rem;
+    font-weight: bolder;
+    color: $white;
+    mix-blend-mode: difference;
+    animation: text-flicker 3s linear infinite;
+    @keyframes text-flicker {
+        0% {
+            opacity: 1;
+        }
+        2% {
+            opacity: 1;
+        }
+        8% {
+            opacity: 1;
+        }
+        9% {
+            opacity: 1;
+        }
+        12% {
+            opacity: 1;
+        }
+        20% {
+            opacity: 1;
+        }
+        25% {
+            opacity: 1;
+        }
+        30% {
+            opacity: 1;
+        }
+
+        70% {
+            opacity: 1;
+        }
+
+        72% {
+            opacity: 1;
+        }
+
+        77% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+}
