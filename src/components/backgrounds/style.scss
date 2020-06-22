@@ -13,6 +13,7 @@
             height: 10vw;
             border-radius: 50%;
             z-index: 40;
+            transition: 5s;
             &.sunrise {
                 background: linear-gradient(rgb(255, 206, 91), rgb(254, 214, 2));
                 box-shadow: 0 0 40px 6px rgb(255, 206, 91);
@@ -42,6 +43,49 @@
                 background: radial-gradient(circle, rgba(217, 234, 241, 1) 0%, rgb(211, 239, 250) 100%);
                 box-shadow: 0px 0px 150px 45px rgba(220, 238, 245, 1);
                 animation: night 8s ease forwards;
+            }
+        }
+        .stars {
+            background-color: #fff;
+            border-radius: 50%;
+            position: absolute;
+            $star: 150;
+            @for $i from 1 through $star {
+                $rand-placement: random(70) * 1%;
+                &.night {
+                    $rand-placement: random(90) * 1%;
+                }
+                $top: $rand-placement;
+                $left: random(100) * 1%;
+                opacity: 0;
+                $z-index: random(15) + 15;
+                $size: random(5) * 1px;
+                height: $size;
+                width: $size;
+                &:nth-of-type(#{$i}) {
+                    left: $left;
+                    opacity: 100 - $rand-placement;
+                    top: $top;
+                    z-index: $z-index;
+                    animation-name: star-#{$i};
+                    animation-duration: random(10) + 1s;
+                    animation-iteration-count: infinite;
+                    transition: all 0.3s ease-in-out;
+                }
+                @keyframes star-#{$i} {
+                    from {
+                        filter: brightness(50%);
+                        -webkit-box-shadow: 0px 0px $size 0px white;
+                        -moz-box-shadow: 0px 0px $size 0px white;
+                        box-shadow: 0px 0px $size 0px white;
+                    }
+                    to {
+                        filter: brightness(100%);
+                        -webkit-box-shadow: 0px 0px $size + 10px 0px white;
+                        -moz-box-shadow: 0px 0px $size + 10px 0px white;
+                        box-shadow: 0px 0px $size + 10px 0px white;
+                    }
+                }
             }
         }
     }

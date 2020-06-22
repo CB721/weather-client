@@ -41,26 +41,6 @@
         top: -11%;
         @include cloud-animation(118s, 51vh, 110vw, -10vw, cloud-ten);
     }
-    &:nth-child(11) {
-        top: 9%;
-        @include cloud-animation(76s, 55vh, 110vw, -10vw, cloud-eleven);
-    }
-    &:nth-child(12) {
-        top: -15%;
-        @include cloud-animation(58s, 36vh, 110vw, -10vw, cloud-twelve);
-    }
-    &:nth-child(13) {
-        top: -18.5%;
-        @include cloud-animation(61s, 58vh, -10vw, 110vw, cloud-thirteen);
-    }
-    &:nth-child(14) {
-        top: -14.5%;
-        @include cloud-animation(102s, 53vh, 110vw, -10vw, cloud-fourteen);
-    }
-    &:nth-child(15) {
-        top: -7%;
-        @include cloud-animation(50s, 39vh, 110vw, -10vw, cloud-last);
-    }
 }
 @mixin cloud-animation($length, $size, $start, $end, $anim) {
     height: $size;
@@ -106,6 +86,9 @@ $rain: 150;
         animation-delay: $delay;
         animation-duration: random(6) + 4s;
         animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: both;
+        transition: all 0.3s ease-in-out;
         left: $left;
         opacity: $opacity;
         top: -$top;

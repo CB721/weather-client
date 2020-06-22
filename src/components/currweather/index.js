@@ -34,7 +34,7 @@ function CurrWeather({ timeOfDay, weather }) {
             setDarkClouds(true);
             setLightClouds(false);
         }
-        setCloudCount(Math.ceil(weather.clouds.all / 10) + 4);
+        setCloudCount(Math.ceilweather.clouds.all / 10);
     }, [weather, timeOfDay]);
     return (<div>
         {darkClouds ? (
