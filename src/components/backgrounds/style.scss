@@ -13,7 +13,10 @@
             height: 10vw;
             border-radius: 50%;
             z-index: 40;
-            transition: 5s;
+            -webkit-transition: all 5s linear;
+            -moz-transition: all 5s linear;
+            -o-transition: all 5s linear;
+            transition: all 5s linear;
             &.sunrise {
                 background: linear-gradient(rgb(255, 206, 91), rgb(254, 214, 2));
                 box-shadow: 0 0 40px 6px rgb(255, 206, 91);

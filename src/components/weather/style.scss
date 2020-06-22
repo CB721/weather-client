@@ -8,6 +8,7 @@
         #expand-weather {
             width: 20vw;
             margin-left: 2.5vw;
+            @include shadow();
         }
     }
     .curr-weather {

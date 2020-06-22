@@ -4,15 +4,88 @@
     width: 50vw;
     display: flex;
     justify-content: center;
+    .clock-bg {
+        width: 10vw;
+        height: 10vw;
+        border-radius: 50%;
+        background-color: $black;
+        z-index: -1;
+    }
     .clock {
         width: 10vw;
-        text-align: center;
         height: 10vw;
-        line-height: 10vw;
-        font-size: 1rem;
-        background-color: $white;
+        text-align: center;
+        background: url(./images/clock.png);
+        background-size: cover;
         border-radius: 50%;
-        color: $black;
-        @include shadow();
+        box-shadow: 0 -15px 15px rgba($color: $white, $alpha: 0.05), 
+                    inset 0 -15px 15px rgba($color: $white, $alpha: 0.05), 
+                    0 -15px 15px rgba($color: $black, $alpha: 0.3), 
+                    inset 0 -15px 15px rgba($color: $black, $alpha: 0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &::before {
+            content: '';
+            position: absolute;
+            width: 0.5vw;
+            height: 0.5vw;
+            background-color: $white;
+            border-radius: 50%;
+            z-index: 10000;
+        }
+        .hour, .min, .sec {
+            position: absolute;
+        }
+        .hour, .hr {
+            width: 3.2vw;
+            height: 3.2vw;
+        }
+        .min, .mn {
+            width: 3.8vw;
+            height: 3.8vw;
+        }
+        .sec, .sc {
+            width: 4.6vw;
+            height: 4.6vw;
+        }
+        .hr, .mn, .sc {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            transition: 500ms ease;
+        }
+        .hr::before {
+            content: '';
+            position: absolute;
+            width: 0.08vw;
+            height: 1.6vw;
+            background: #ff105e;
+            z-index: 10;
+            border-radius: 6px 6px 0 0;
+        }
+        .mn::before {
+            content: '';
+            position: absolute;
+            width: 0.08vw;
+            height: 1.8vw;
+            background: $white;
+            z-index: 11;
+            border-radius: 6px 6px 0 0;
+        }
+        .sc::before {
+            content: '';
+            position: absolute;
+            width: 0.02vw;
+            height: 3vw;
+            background: $white;
+            z-index: 12;
+            border-radius: 6px 6px 0 0;
+        }
+        .digital {
+            font-size: 1rem;
+            color: $white;
+            @include contrast-text;
+        }
     }
 }
