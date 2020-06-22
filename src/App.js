@@ -93,20 +93,29 @@ function App() {
     if (savedWeather) {
       setWeather(savedWeather);
     }
-    if (currentHour >= 5 && currentHour < 10) {
+    // set the time of day
+    updateTime(currentHour);
+    // every minute check for time of day
+    setInterval(() => {
+      let hour = parseInt(moment().format("H"));
+      updateTime(hour);
+    }, 60000);
+  }, []);
+  
+  function updateTime(hour) {
+    if (hour >= 5 && hour < 10) {
       setTimeOfDay("sunrise");
     }
-    if (currentHour >= 10 && currentHour < 17) {
+    if (hour >= 10 && hour < 17) {
       setTimeOfDay("day");
     }
-    if (currentHour >= 17 && currentHour < 21) {
+    if (hour >= 17 && hour < 21) {
       setTimeOfDay("evening");
     }
-    if ((currentHour >= 21 && currentHour < 25) || (currentHour >= 0 && currentHour < 5)) {
+    if ((hour >= 21 && hour < 25) || (hour >= 0 && hour < 5)) {
       setTimeOfDay("night");
     }
-  }, []);
-
+  }
   function getLocation() {
     // set that the user has confirmed to share their location to local storage
     localStorage.setItem("location-permission", true);
