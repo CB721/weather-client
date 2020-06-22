@@ -2,11 +2,12 @@
 
 .weather-section {
     width: 12vw;
-    // min-height: 30vw;
     border-radius: 15px;
     background-color: $grey;
     margin: 5vh 2vw;
     color: $white;
+    opacity: 0.9;
+    @include shadow(#9b999976);
     &:first-child {
         width: 21vw;
     }

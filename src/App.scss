@@ -59,6 +59,11 @@ $white: #d7d4d4;
     }
 }
 
+@mixin shadow($color: #29292976) {
+        box-shadow: inset 0.5rem -0.5rem 1rem $color;
+        filter: drop-shadow(0.25rem -0.25rem 1rem #29292976);
+}
+
 .app {
     height: 100vh;
     width: 100vw;

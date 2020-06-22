@@ -15,7 +15,7 @@ function App() {
   const [long, setLong] = useState();
   const [modalMessage, setModalMessage] = useState("Please enable your location services to continue.");
   const [locationPermission, setLocationPermission] = useState(false);
-  const [timeOfDay, setTimeOfDay] = useState("sunrise");
+  const [timeOfDay, setTimeOfDay] = useState("day");
 
   const currentHour = parseInt(moment().format("H"));
 
