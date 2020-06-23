@@ -3,7 +3,6 @@ import CurrWeather from '../currweather';
 import './style.scss';
 
 function Backgrounds({ timeOfDay, weather }) {
-    console.log(weather);
     return (
         <div className={`bg ${timeOfDay}`}>
             {timeOfDay === 'sunrise' ? (

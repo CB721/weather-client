@@ -4,6 +4,7 @@ import Weather from './components/weather';
 import Backgrounds from './components/backgrounds';
 import Header from './components/header';
 import Clock from './components/clock';
+import Date from './components/date';
 import API from './utils/api';
 import moment from 'moment';
 import './App.scss';
@@ -95,13 +96,13 @@ function App() {
     }
     // set the time of day
     updateTime(currentHour);
-    // every minute check for time of day
+    // every 5 minutes check for time of day
     setInterval(() => {
       let hour = parseInt(moment().format("H"));
       updateTime(hour);
-    }, 60000);
+    }, 300000);
   }, []);
-  
+
   function updateTime(hour) {
     if (hour >= 5 && hour < 10) {
       setTimeOfDay("sunrise");
@@ -160,7 +161,10 @@ function App() {
       <Header
         name='User'
       />
-      <Clock />
+      <div id="date-time">
+        <Date />
+        <Clock />
+      </div>
       {weather && forecast && forecast.length ? (
         <Weather
           today={weather}

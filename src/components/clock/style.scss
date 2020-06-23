@@ -1,10 +1,10 @@
 @import "../../App.scss";
 
-.clock-section {
+#clock-section {
     width: 50vw;
     display: flex;
     justify-content: center;
-    .clock-bg {
+    #clock-bg {
         width: 10vw;
         height: 10vw;
         border-radius: 50%;
@@ -12,7 +12,7 @@
         z-index: -1;
         opacity: 0.95;
     }
-    .clock {
+    #clock {
         width: 10vw;
         height: 10vw;
         text-align: center;
@@ -20,10 +20,6 @@
         background-size: cover;
         border-radius: 50%;
         @include shadow(#9b999976);
-        // box-shadow: 0 -15px 15px rgba($color: $white, $alpha: 0.05), 
-        //             inset 0 -15px 15px rgba($color: $white, $alpha: 0.05), 
-        //             0 -15px 15px rgba($color: $black, $alpha: 0.3), 
-        //             inset 0 -15px 15px rgba($color: $black, $alpha: 0.3);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -88,7 +84,6 @@
             font-size: 1rem;
             color: $white;
             @include contrast-text;
-            bottom: 10%;
         }
     }
 }

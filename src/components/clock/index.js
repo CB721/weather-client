@@ -9,7 +9,6 @@ function Clock() {
         seconds: '',
         amOrPm: ''
     });
-    // const [displayTime, setDisplayTime] = useState("");
 
     setInterval(() => {
         const currentSecs = new Date() - new Date(0);
@@ -36,9 +35,9 @@ function Clock() {
 
 
     return (
-        <div className="clock-section">
-            <div className="clock-bg">
-                <div className="clock">
+        <div id="clock-section">
+            <div id="clock-bg">
+                <div id="clock">
                     <div className="hour">
                         <div className="hr" id="hr" />
                     </div>

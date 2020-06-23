@@ -9,13 +9,9 @@ function CurrWeather({ timeOfDay, weather }) {
     const [rain, setRain] = useState(false);
     const [mist, setMist] = useState(false);
     const [snow, setSnow] = useState(false);
-    const [stars, setStars] = useState(false);
     const [cloudCount, setCloudCount] = useState(0);
 
     useEffect(() => {
-        if (timeOfDay === "night") {
-            setStars(true);
-        }
         const lowerWeatherDesc = weather.weather[0].description.toLowerCase();
         if (lowerWeatherDesc.includes('snow')) {
             setSnow(true);

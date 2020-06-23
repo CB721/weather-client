@@ -2,7 +2,7 @@
 
 .weather-section {
     width: 12vw;
-    border-radius: 15px;
+    @include border;
     background-color: $black;
     margin: 5vh 2vw;
     color: $white;
