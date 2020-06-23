@@ -40,19 +40,13 @@ function Clock() {
             <div className="clock-bg">
                 <div className="clock">
                     <div className="hour">
-                        <div className="hr" id="hr">
-
-                        </div>
+                        <div className="hr" id="hr" />
                     </div>
                     <div className="min">
-                        <div className="mn" id="mn">
-
-                        </div>
+                        <div className="mn" id="mn" />
                     </div>
                     <div className="sec">
-                        <div className="sc" id="sc">
-
-                        </div>
+                        <div className="sc" id="sc" />
                     </div>
                     <div className="digital">
                         {`${displayTime.hours}:${displayTime.minutes}:${displayTime.seconds} ${displayTime.amOrPm}`}
