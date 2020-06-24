@@ -11,13 +11,12 @@
         background-color: $black;
         @include border;
         @include shadow(#9b999976);
-        font-size: 2rem;
+        font-size: 1.5rem;
         color: $white;
         .date-section {
             width: 10vw;
             height: 5vw;
             line-height: 5vw;
         }
-        // @include contrast-text;
     }
 }

@@ -5,6 +5,7 @@ import Backgrounds from './components/backgrounds';
 import Header from './components/header';
 import Clock from './components/clock';
 import Date from './components/date';
+import { Form, Input } from './components/form';
 import API from './utils/api';
 import moment from 'moment';
 import './App.scss';
@@ -17,6 +18,10 @@ function App() {
   const [modalMessage, setModalMessage] = useState("Please enable your location services to continue.");
   const [locationPermission, setLocationPermission] = useState(false);
   const [timeOfDay, setTimeOfDay] = useState("day");
+  const [user, setUser] = useState({
+    name: "",
+    isSaved: false
+  });
 
   const currentHour = parseInt(moment().format("H"));
 
@@ -90,6 +95,11 @@ function App() {
     }
   }, [currentHour]);
   useEffect(() => {
+    // check for user name saved to local storage
+    const savedName = localStorage.getItem("username");
+    if (savedName) {
+      setUser({ ...user, name: savedName, isSaved: true });
+    }
     const savedWeather = JSON.parse(localStorage.getItem("weather"));
     if (savedWeather) {
       setWeather(savedWeather);
@@ -141,16 +151,64 @@ function App() {
         }
       );
   }
-
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+    switch (name) {
+      case "name":
+        setUser({ ...user, name: value });
+        break;
+      default:
+        return;
+    }
+  }
+  function validateField(event) {
+    const { name, value } = event.target;
+    switch (name) {
+      case "name":
+        if (!value.length) setModalMessage("Please enter your name");
+        break;
+      default:
+        return;
+    }
+  }
+  function handleInputSubmit(event, property) {
+    event.preventDefault();
+    switch (property) {
+      case "name":
+        localStorage.setItem("username", user.name);
+        setUser({ ...user, isSaved: true });
+        break;
+      default:
+        return;
+    }
+  }
   return (
     <div className="app">
-      {weather ? (
+      {weather && user.name && locationPermission ? (
         <Backgrounds
           timeOfDay={timeOfDay}
           weather={weather}
         />
       ) : (<div />)}
-      {!locationPermission ? (
+      {!user.isSaved ? (
+        <Modal
+          text="What is your name?"
+          action={event => handleInputSubmit(event, "name")}
+          buttonText="Submit"
+          bgStyle={timeOfDay}
+          children={<Form>
+            <Input
+              type=""
+              value={user.name}
+              name="name"
+              placeholder="Your name"
+              handleInputChange={handleInputChange}
+              validate={validateField}
+              autoFocus={true}
+            />
+          </Form>}
+        />
+      ) : !locationPermission ? (
         <Modal
           text={modalMessage}
           action={getLocation}
@@ -158,18 +216,22 @@ function App() {
           bgStyle={timeOfDay}
         />
       ) : (<div />)}
-      <Header
-        name='User'
-      />
-      <div id="date-time">
-        <Date />
-        <Clock />
-      </div>
-      {weather && forecast && forecast.length ? (
-        <Weather
-          today={weather}
-          forecast={forecast}
-        />
+      {user.isSaved ? (
+        <div>
+          <Header
+            name={user.name}
+          />
+          <div id="date-time">
+            <Date />
+            <Clock />
+          </div>
+          {weather && forecast && forecast.length ? (
+            <Weather
+              today={weather}
+              forecast={forecast}
+            />
+          ) : (<div />)}
+        </div>
       ) : (<div />)}
     </div>
   );
