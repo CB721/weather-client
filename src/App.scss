@@ -3,6 +3,10 @@ $grey: #292929;
 $white: #d7d4d4;
 
 @mixin day-bg {
+    background-attachment: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     &.sunrise {
         background: linear-gradient(
             180deg,
