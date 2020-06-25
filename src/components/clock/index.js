@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import './style.scss';
 
@@ -10,27 +10,29 @@ function Clock() {
         amOrPm: ''
     });
 
-    setInterval(() => {
-        const currentSecs = new Date() - new Date(0);
-        let hours = moment(new Date(currentSecs)).format('h');
-        let minutes = moment(new Date(currentSecs)).format('mm');
-        let seconds = moment(new Date(currentSecs)).format('ss');
-        let amOrPm = moment(new Date(currentSecs)).format('A');
-        setDisplayTime({
-            hours, minutes, seconds, amOrPm
-        });
-        const deg = 6;
-        const hr = document.querySelector('#hr');
-        const min = document.querySelector('#mn');
-        const sec = document.querySelector('#sc');
-        let day = new Date();
-        let hh = day.getHours() * 30;
-        let mm = day.getMinutes() * deg;
-        let ss = day.getSeconds() * deg;
-        hr.style.transform = `rotateZ(${(hh) + (mm / 12)}deg)`;
-        min.style.transform = `rotateZ(${mm}deg)`;
-        sec.style.transform = `rotateZ(${ss}deg)`;
-    }, 1000);
+    useEffect(() => {
+        setInterval(() => {
+            const currentSecs = new Date() - new Date(0);
+            let hours = moment(new Date(currentSecs)).format('h');
+            let minutes = moment(new Date(currentSecs)).format('mm');
+            let seconds = moment(new Date(currentSecs)).format('ss');
+            let amOrPm = moment(new Date(currentSecs)).format('A');
+            setDisplayTime({
+                hours, minutes, seconds, amOrPm
+            });
+            const deg = 6;
+            const hr = document.querySelector('#hr');
+            const min = document.querySelector('#mn');
+            const sec = document.querySelector('#sc');
+            let day = new Date();
+            let hh = day.getHours() * 30;
+            let mm = day.getMinutes() * deg;
+            let ss = day.getSeconds() * deg;
+            hr.style.transform = `rotateZ(${(hh) + (mm / 12)}deg)`;
+            min.style.transform = `rotateZ(${mm}deg)`;
+            sec.style.transform = `rotateZ(${ss}deg)`;
+        }, 1000);
+    }, []);
 
 
 

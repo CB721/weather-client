@@ -2,14 +2,42 @@
 
 .welcome-header {
     width: 100vw;
-    text-align: center;
     height: 10vh;
-    line-height: 10vh;
-    font-size: 4rem;
-    font-weight: bolder;
-    color: $white;
-    @include contrast-text;
-    @media only screen and (max-width: 500px) {
-        font-size: 2rem;
+    display: flex;
+    justify-content: space-evenly;
+    #left-header,
+    #center-header,
+    #right-header {
+        width: 33%;
+    }
+    #center-header {
+        text-align: center;
+        line-height: 10vh;
+        font-size: 4rem;
+        font-weight: bolder;
+        color: $white;
+        @media only screen and (max-width: 500px) {
+            font-size: 2rem;
+        }
+        @include contrast-text;
+    }
+    #right-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        #menu {
+            display: inline-block;
+            &:hover {
+                cursor: pointer;
+            }
+            .bar {
+                width: 3.5rem;
+                height: 0.5rem;
+                background-color: $white;
+                margin: 0.5rem 0;
+                transition: 0.5s;
+                border-radius: 0.5rem;
+            }
+        }
     }
 }

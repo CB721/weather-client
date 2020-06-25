@@ -2,12 +2,15 @@ $black: #0f0f0f;
 $grey: #292929;
 $white: #d7d4d4;
 
-@mixin day-bg {
+@mixin full-bg {
     background-attachment: relative;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+@mixin day-bg {
     &.sunrise {
+        @include full-bg();
         background: linear-gradient(
             180deg,
             rgb(33, 127, 216) 0%,
@@ -22,6 +25,7 @@ $white: #d7d4d4;
         );
     }
     &.day {
+        @include full-bg();
         background: linear-gradient(
             180deg,
             rgb(0, 60, 141) 0%,
@@ -32,6 +36,7 @@ $white: #d7d4d4;
         );
     }
     &.evening {
+        @include full-bg();
         background: linear-gradient(
             180deg,
             rgb(3, 4, 10) 0%,
@@ -48,7 +53,7 @@ $white: #d7d4d4;
         );
     }
     &.night {
-        background: rgb(0, 0, 0);
+        @include full-bg();
         background: linear-gradient(
             180deg,
             rgb(0, 1, 22) 0%,

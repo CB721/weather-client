@@ -22,6 +22,12 @@ function App() {
     name: "",
     isSaved: false
   });
+  const [showSettings, setShowSettings] = useState(false);
+  const [settings, setSettings] = useState({
+    showDate: true,
+    showClock: true,
+    showWeatherBG: true
+  });
 
   const currentHour = parseInt(moment().format("H"));
 
@@ -93,8 +99,7 @@ function App() {
       // if the location permission has already been granted, just get the location
       getLocation();
     }
-  }, [currentHour]);
-  useEffect(() => {
+
     // check for user name saved to local storage
     const savedName = localStorage.getItem("username");
     if (savedName) {
@@ -111,7 +116,17 @@ function App() {
       let hour = parseInt(moment().format("H"));
       updateTime(hour);
     }, 300000);
-  }, []);
+
+    // check local storage for settings
+    const savedSettings = JSON.parse(localStorage.getItem("settings"));
+    // if there are settings saved, update them in state
+    if (savedSettings) {
+      setSettings({ ...settings, savedSettings });
+    } else {
+      // if there aren't setting saved, save the defaults to local storage
+      localStorage.setItem("settings", JSON.stringify(settings));
+    }
+  }, [currentHour]);
 
   function updateTime(hour) {
     if (hour >= 5 && hour < 10) {
@@ -182,12 +197,17 @@ function App() {
         return;
     }
   }
+  function toggleSideMenu(event) {
+    event.preventDefault();
+    setShowSettings(!showSettings);
+  }
   return (
     <div className="app">
       {weather && user.name && locationPermission ? (
         <Backgrounds
           timeOfDay={timeOfDay}
           weather={weather}
+          showCurrWeather={settings.showWeatherBG}
         />
       ) : (<div />)}
       {!user.isSaved ? (
@@ -220,11 +240,18 @@ function App() {
         <div>
           <Header
             name={user.name}
+            openMenu={toggleSideMenu}
           />
-          <div id="date-time">
-            <Date />
-            <Clock />
-          </div>
+          {settings.showClock || settings.showDate ? (
+            <div id="date-time">
+              {settings.showDate ? (
+                <Date />
+              ) : (<div />)}
+              {settings.showClock ? (
+                <Clock />
+              ) : (<div />)}
+            </div>
+          ) : (<div />)}
           {weather && forecast && forecast.length ? (
             <Weather
               today={weather}
