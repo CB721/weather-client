@@ -5,6 +5,7 @@ import Backgrounds from './components/backgrounds';
 import Header from './components/header';
 import Clock from './components/clock';
 import Date from './components/date';
+import Settings from './components/settings';
 import { Form, Input } from './components/form';
 import API from './utils/api';
 import moment from 'moment';
@@ -23,11 +24,13 @@ function App() {
     isSaved: false
   });
   const [showSettings, setShowSettings] = useState(false);
-  const [settings, setSettings] = useState({
-    showDate: true,
-    showClock: true,
-    showWeatherBG: true
-  });
+  const [settings, setSettings] = useState(
+    {
+      showDate: true,
+      showClock: true,
+      showWeatherBG: false
+    }
+  );
 
   const currentHour = parseInt(moment().format("H"));
 
@@ -121,7 +124,7 @@ function App() {
     const savedSettings = JSON.parse(localStorage.getItem("settings"));
     // if there are settings saved, update them in state
     if (savedSettings) {
-      setSettings({ ...settings, savedSettings });
+      setSettings(savedSettings);
     } else {
       // if there aren't setting saved, save the defaults to local storage
       localStorage.setItem("settings", JSON.stringify(settings));
@@ -201,6 +204,22 @@ function App() {
     event.preventDefault();
     setShowSettings(!showSettings);
   }
+  function adjustSetting(event, setting) {
+    event.preventDefault();
+    switch (setting) {
+      case "showDate":
+        setSettings({ ...settings, showDate: !settings.showDate });
+        break;
+      case "showClock":
+        setSettings({ ...settings, showClock: !settings.showClock });
+        break;
+      case "showWeatherBG":
+        setSettings({ ...settings, showWeatherBG: !settings.showWeatherBG });
+        break;
+      default:
+        return;
+    }
+  }
   return (
     <div className="app">
       {weather && user.name && locationPermission ? (
@@ -259,6 +278,13 @@ function App() {
             />
           ) : (<div />)}
         </div>
+      ) : (<div />)}
+      {showSettings ? (
+        <Settings
+          settings={settings}
+          closeMenu={toggleSideMenu}
+          adjustSetting={adjustSetting}
+        />
       ) : (<div />)}
     </div>
   );

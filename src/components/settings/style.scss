@@ -1,0 +1,110 @@
+@import "../../App.scss";
+
+.settings {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 50000;
+    #no-content-area {
+        width: 66%;
+        height: 100%;
+        &:hover {
+            cursor: pointer;
+        }
+        @media only screen and (max-width: 500px) {
+            width: 20%;
+        }
+    }
+    #content-area {
+        width: 34%;
+        height: 100%;
+        background-color: $black;
+        color: $white;
+        transition: 0.5s;
+        @media only screen and (max-width: 500px) {
+            width: 80%;
+        }
+        -webkit-animation: swing-in-right-fwd 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+        animation: swing-in-right-fwd 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+        @-webkit-keyframes swing-in-right-fwd {
+            0% {
+                -webkit-transform: rotateY(-100deg);
+                transform: rotateY(-100deg);
+                -webkit-transform-origin: right;
+                transform-origin: right;
+                opacity: 0;
+            }
+            100% {
+                -webkit-transform: rotateY(0);
+                transform: rotateY(0);
+                -webkit-transform-origin: right;
+                transform-origin: right;
+                opacity: 1;
+            }
+        }
+        @keyframes swing-in-right-fwd {
+            0% {
+                -webkit-transform: rotateY(-100deg);
+                transform: rotateY(-100deg);
+                -webkit-transform-origin: right;
+                transform-origin: right;
+                opacity: 0;
+            }
+            100% {
+                -webkit-transform: rotateY(0);
+                transform: rotateY(0);
+                -webkit-transform-origin: right;
+                transform-origin: right;
+                opacity: 1;
+            }
+        }
+        .setting {
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            @include bottom-border-glow();
+            .setting-section {
+                width: 50%;
+                height: 4rem;
+                line-height: 4rem;
+                text-align: center;
+                &:nth-child(2n) {
+                    border-left: 1px solid rgb(70, 197, 252);
+                    &:hover {
+                        cursor: pointer;
+                    }
+                    -webkit-animation: text-focus-in 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+                    animation: text-focus-in 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+                    @-webkit-keyframes text-focus-in {
+                        0% {
+                            -webkit-filter: blur(12px);
+                            filter: blur(12px);
+                            opacity: 0;
+                        }
+                        100% {
+                            -webkit-filter: blur(0px);
+                            filter: blur(0px);
+                            opacity: 1;
+                        }
+                    }
+                    @keyframes text-focus-in {
+                        0% {
+                            -webkit-filter: blur(12px);
+                            filter: blur(12px);
+                            opacity: 0;
+                        }
+                        100% {
+                            -webkit-filter: blur(0px);
+                            filter: blur(0px);
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

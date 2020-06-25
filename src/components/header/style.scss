@@ -13,19 +13,20 @@
     #center-header {
         text-align: center;
         line-height: 10vh;
-        font-size: 4rem;
+        font-size: 2rem;
         font-weight: bolder;
         color: $white;
         @media only screen and (max-width: 500px) {
-            font-size: 2rem;
+            line-height: 5vh;
+            font-size: 1.5rem;
         }
         @include contrast-text;
     }
     #right-header {
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: center;
-        #menu {
+        .menu {
             display: inline-block;
             &:hover {
                 cursor: pointer;
@@ -34,7 +35,7 @@
                 width: 3.5rem;
                 height: 0.5rem;
                 background-color: $white;
-                margin: 0.5rem 0;
+                margin: 0.5rem 0.5rem;
                 transition: 0.5s;
                 border-radius: 0.5rem;
             }

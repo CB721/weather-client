@@ -18,21 +18,7 @@
         &:focus {
             width: 85%;
             outline: none;
-            animation: shadow-rise 3s ease-in-out 0s infinite forwards;
-            @keyframes shadow-rise {
-                0% {
-                    border-bottom: 1px solid rgb(70, 197, 252);
-                    box-shadow: inset 0 0 0rem rgba(70, 216, 252, 0.468);
-                }
-                50% {
-                    border-bottom: 5px solid rgb(70, 197, 252);
-                    box-shadow: inset 0 -0.5rem 1rem rgba(70, 216, 252, 0.468);
-                }
-                100% {
-                    border-bottom: 1px solid rgb(70, 197, 252);
-                    box-shadow: inset 0 0 0rem rgba(70, 216, 252, 0.468);
-                }
-            }
+            @include bottom-border-glow();
         }
     }
 }
