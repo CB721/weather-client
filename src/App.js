@@ -31,8 +31,10 @@ function App() {
       showWeatherBG: false
     }
   );
+  const [news, setNews] = useState([]);
 
   const currentHour = parseInt(moment().format("H"));
+  const today = moment().format("YYYY-MM-DD");
 
   useEffect(() => {
     // if both a latitude and longitude have been provided and the user has given permission to user location
@@ -130,6 +132,32 @@ function App() {
       localStorage.setItem("settings", JSON.stringify(settings));
     }
   }, [currentHour]);
+  useEffect(() => {
+    // every time the setting are updated, save it to local storage
+    localStorage.setItem("settings", JSON.stringify(settings));
+  }, [settings]);
+  useEffect(() => {
+    // check local storage for the last news update
+    const lastNewsUpdate = localStorage.getItem("news-update");
+    // check local storage for saved news
+    const savedNews = JSON.parse(localStorage.getItem("news"));
+    // if the news hasn't been updated on the current day or if the news has been removed from local storage
+    if (lastNewsUpdate !== today || !savedNews) {
+      API.getPolitics()
+        .then(res => {
+          const newsData = res.data.articles;
+          // save to state
+          setNews(newsData);
+          // save to local storage
+          localStorage.setItem("news", JSON.stringify(newsData));
+          // save current day as last update
+          localStorage.setItem("news-update", today);
+        })
+        .catch(err => console.log(err));
+    } else {
+      setNews(savedNews);
+    }
+  }, []);
 
   function updateTime(hour) {
     if (hour >= 5 && hour < 10) {

@@ -32,9 +32,7 @@ function Clock() {
             min.style.transform = `rotateZ(${mm}deg)`;
             sec.style.transform = `rotateZ(${ss}deg)`;
         }, 1000);
-    }, []);
-
-
+    });
 
     return (
         <div id="clock-section">
