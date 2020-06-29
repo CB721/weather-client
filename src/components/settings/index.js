@@ -10,7 +10,11 @@ function Settings({ settings, closeMenu, adjustSetting }) {
             case "showClock":
                 return "Clock";
             case "showWeatherBG":
-                return "Weather";
+                return "Weather Background";
+            case "showWeather":
+                return "Weather Forecast";
+            case "showNews":
+                return "News";
             default:
                 return;
         }

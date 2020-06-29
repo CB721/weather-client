@@ -67,6 +67,11 @@ $white: #d7d4d4;
         );
     }
 }
+@mixin ellipsis-text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 @mixin border {
     border-radius: 15px;
 }

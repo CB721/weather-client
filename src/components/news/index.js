@@ -37,7 +37,7 @@ export function NewsSection({ data }) {
             onClick={event => openLink(event)}
         >
             <div className="news-header">
-                {data.title}
+                {data.title.toLowerCase()}
             </div>
             <div className="news-image-section">
                 <img src={data.urlToImage} alt={data.title} className="news-image" />

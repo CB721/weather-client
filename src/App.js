@@ -29,7 +29,9 @@ function App() {
     {
       showDate: true,
       showClock: true,
-      showWeatherBG: false
+      showWeatherBG: false,
+      showWeather: true,
+      showNews: false
     }
   );
   const [news, setNews] = useState([]);
@@ -262,6 +264,12 @@ function App() {
       case "showWeatherBG":
         setSettings({ ...settings, showWeatherBG: !settings.showWeatherBG });
         break;
+      case "showWeather":
+        setSettings({ ...settings, showWeather: !settings.showWeather });
+        break;
+      case "showNews":
+        setSettings({ ...settings, showNews: !settings.showNews });
+        break;
       default:
         return;
     }
@@ -329,7 +337,7 @@ function App() {
               ) : (<div />)}
             </div>
           ) : (<div />)}
-          {news.length ? (
+          {news.length && settings.showNews ? (
             <NewsBar
               children={displayNews.map((article, index) => (
                 <NewsSection
@@ -340,7 +348,7 @@ function App() {
               changeNewsPage={changeNewsPage}
             />
           ) : (<div />)}
-          {weather && forecast && forecast.length ? (
+          {weather && forecast && forecast.length && settings.showWeather ? (
             <Weather
               today={weather}
               forecast={forecast}
