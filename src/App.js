@@ -7,6 +7,7 @@ import Clock from './components/clock';
 import Date from './components/date';
 import Settings from './components/settings';
 import { Form, Input } from './components/form';
+import { NewsBar, NewsSection } from './components/news';
 import API from './utils/api';
 import moment from 'moment';
 import './App.scss';
@@ -32,6 +33,8 @@ function App() {
     }
   );
   const [news, setNews] = useState([]);
+  const [displayNews, setDisplayNews] = useState([]);
+  const [displayNewsPage, setDisplayNewsPage] = useState(1);
 
   const currentHour = parseInt(moment().format("H"));
   const today = moment().format("YYYY-MM-DD");
@@ -158,6 +161,21 @@ function App() {
       setNews(savedNews);
     }
   }, []);
+  useEffect(() => {
+    if (news.length) {
+      let sliceNews = news.slice(0, 4);
+      if (displayNewsPage === 2) {
+        sliceNews = news.slice(4, 8);
+      } else if (displayNewsPage === 3) {
+        sliceNews = news.slice(8, 12);
+      } else if (displayNewsPage === 4) {
+        sliceNews = news.slice(12, 16);
+      } else if (displayNewsPage === 5) {
+        sliceNews = news.slice(16, 20);
+      }
+      setDisplayNews(sliceNews);
+    }
+  }, [news, displayNewsPage]);
 
   function updateTime(hour) {
     if (hour >= 5 && hour < 10) {
@@ -248,6 +266,18 @@ function App() {
         return;
     }
   }
+  function changeNewsPage(event, next) {
+    event.preventDefault();
+    if (next && displayNewsPage < 5) {
+      setDisplayNewsPage(displayNewsPage + 1);
+    } else if (next) {
+      setDisplayNewsPage(1);
+    } else if (!next && displayNewsPage > 1) {
+      setDisplayNewsPage(displayNewsPage - 1);
+    } else {
+      setDisplayNewsPage(5);
+    }
+  }
   return (
     <div className="app">
       {weather && user.name && locationPermission ? (
@@ -298,6 +328,17 @@ function App() {
                 <Clock />
               ) : (<div />)}
             </div>
+          ) : (<div />)}
+          {news.length ? (
+            <NewsBar
+              children={displayNews.map((article, index) => (
+                <NewsSection
+                  key={index}
+                  data={article}
+                />
+              ))}
+              changeNewsPage={changeNewsPage}
+            />
           ) : (<div />)}
           {weather && forecast && forecast.length ? (
             <Weather
