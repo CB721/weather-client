@@ -286,6 +286,14 @@ function App() {
       setDisplayNewsPage(5);
     }
   }
+  function setBGHeight() {
+    let total = 0;
+    for (const key in settings) {
+      if (settings[key] && (key !== 'showWeatherBG' || key !== 'showClock' || key !== 'showDate')) total ++;
+      else if (settings[key] && (key === 'showClock' || key === 'showDate')) total += 0.5
+    }
+    return 100 + (10 * total);
+  }
   return (
     <div className="app">
       {weather && user.name && locationPermission ? (
@@ -293,6 +301,7 @@ function App() {
           timeOfDay={timeOfDay}
           weather={weather}
           showCurrWeather={settings.showWeatherBG}
+          height={setBGHeight()}
         />
       ) : (<div />)}
       {!user.isSaved ? (

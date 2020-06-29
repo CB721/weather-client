@@ -2,9 +2,9 @@ import React from 'react';
 import CurrWeather from '../currweather';
 import './style.scss';
 
-function Backgrounds({ timeOfDay, weather, showCurrWeather }) {
+function Backgrounds({ timeOfDay, weather, showCurrWeather, height }) {
     return (
-        <div className={`bg ${timeOfDay}`}>
+        <div className={`bg ${timeOfDay}`} style={{'height': `${height}vh`}}>
             {timeOfDay === 'sunrise' || timeOfDay === 'day' ? (
                 <div className="day-items">
                     <div className={`sun ${timeOfDay} `} />

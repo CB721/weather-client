@@ -11,7 +11,7 @@ function Clock() {
     });
 
     useEffect(() => {
-        setInterval(() => {
+        const clockTimer = setInterval(() => {
             const currentSecs = new Date() - new Date(0);
             let hours = moment(new Date(currentSecs)).format('h');
             let minutes = moment(new Date(currentSecs)).format('mm');
@@ -32,7 +32,10 @@ function Clock() {
             min.style.transform = `rotateZ(${mm}deg)`;
             sec.style.transform = `rotateZ(${ss}deg)`;
         }, 1000);
-    });
+        return () => {
+            clearInterval(clockTimer);
+        }
+    }, []);
 
     return (
         <div id="clock-section">
