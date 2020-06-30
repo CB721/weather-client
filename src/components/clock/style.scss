@@ -20,10 +20,9 @@
         width: 10vw;
         height: 10vw;
         text-align: center;
-        background: url(./images/clock.png);
+        background: url(./images/clock.svg);
         background-size: cover;
         border-radius: 50%;
-        @include shadow(#9b999976);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -85,8 +84,9 @@
             border-radius: 6px 6px 0 0;
         }
         .digital {
-            font-size: 1rem;
-            color: $white;
+            font-size: 1.25rem;
+            color: rgb(11, 227, 11);
+            text-shadow: 1px 1px 3px rgb(9, 150, 9);
             @include contrast-text;
         }
         @media only screen and (max-width:500px) {
