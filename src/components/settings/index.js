@@ -15,6 +15,8 @@ function Settings({ settings, closeMenu, adjustSetting }) {
                 return "Weather Forecast";
             case "showNews":
                 return "News";
+            case "clockType":
+                return "Clock Type";
             default:
                 return;
         }
@@ -31,12 +33,22 @@ function Settings({ settings, closeMenu, adjustSetting }) {
                         <div className="setting-section">
                             {convertKey(key)}
                         </div>
-                        <div
-                            className="setting-section"
-                            onClick={event => adjustSetting(event, key)}
-                        >
-                            {settings[key] ? "Show" : "Hide"}
-                        </div>
+                        {key !== 'clockType' ? (
+                            <div
+                                className="setting-section"
+                                onClick={event => adjustSetting(event, key)}
+                            >
+                                {settings[key] ? "Show" : "Hide"}
+                            </div>
+                        ) : (
+                                <div
+                                    className="setting-section"
+                                    onClick={event => adjustSetting(event, key)}
+                                >
+                                    {settings[key]}
+                                </div>
+                            )}
+
                     </div>
                 ))}
             </div>

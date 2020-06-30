@@ -29,6 +29,7 @@ function App() {
     {
       showDate: true,
       showClock: true,
+      clockType: 'analog',
       showWeatherBG: false,
       showWeather: true,
       showNews: false
@@ -270,6 +271,10 @@ function App() {
       case "showNews":
         setSettings({ ...settings, showNews: !settings.showNews });
         break;
+      case "clockType":
+        if (settings.clockType === 'analog') setSettings({...settings, clockType: 'digital'});
+        else setSettings({...settings, clockType: 'analog'});
+        break;
       default:
         return;
     }
@@ -289,7 +294,7 @@ function App() {
   function setBGHeight() {
     let total = 0;
     for (const key in settings) {
-      if (settings[key] && (key !== 'showWeatherBG' || key !== 'showClock' || key !== 'showDate')) total ++;
+      if (settings[key] && (key !== 'showWeatherBG' || key !== 'showClock' || key !== 'showDate' || key !== "clockType")) total ++;
       else if (settings[key] && (key === 'showClock' || key === 'showDate')) total += 0.5
     }
     return 100 + (10 * total);
@@ -342,7 +347,9 @@ function App() {
                 <Date />
               ) : (<div />)}
               {settings.showClock ? (
-                <Clock />
+                <Clock 
+                  type={settings.clockType}
+                />
               ) : (<div />)}
             </div>
           ) : (<div />)}
