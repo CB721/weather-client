@@ -8,10 +8,12 @@
     color: $white;
     opacity: 0.95;
     @include shadow(#9b999976);
+    height: 15vh;
     &:first-child {
         width: 21vw;
+        height: auto;
     }
-    @media only screen and (min-width: 500px) {
+    @media only screen and (min-width: 768px) {
         transition: 0.5s;
         &.expand {
             width: 20vw;
@@ -52,7 +54,8 @@
             display: flex;
             justify-content: space-evenly;
             .weather-char {
-                padding: 0.5rem;
+                padding: 1rem;
+                margin-bottom: 1rem;
                 text-align: center;
             }
         }

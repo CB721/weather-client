@@ -2,9 +2,15 @@
 
 .welcome-header {
     width: 100vw;
-    height: 10vh;
+    min-height: 10vh;
     display: flex;
     justify-content: space-evenly;
+    #left-header,
+    #right-header {
+        @media only screen and (max-width: 500px) {
+            width: 25%;
+        }
+    }
     #left-header,
     #center-header,
     #right-header {
@@ -19,6 +25,7 @@
         @media only screen and (max-width: 500px) {
             line-height: 5vh;
             font-size: 1.5rem;
+            width: 50%;
         }
         @include contrast-text;
     }

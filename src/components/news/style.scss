@@ -10,10 +10,10 @@
         justify-content: center;
         align-items: center;
         .news-section {
-            width: 20vw;
+            width: calc(20vw - 10%);
             height: 35vh;
             margin: 0 2vw;
-            padding: 0 0.25vw;
+            padding: 5%;
             background-color: $black;
             @include shadow(#9b999976);
             @include border;
@@ -27,7 +27,7 @@
                 margin: 2vh auto;
             }
             .news-header {
-                width: 100%;
+                width: 98%;
                 text-align: center;
                 font-size: 1.25rem;
                 height: 5vh;
