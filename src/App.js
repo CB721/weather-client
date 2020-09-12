@@ -60,14 +60,13 @@ function App() {
     }
   }, [lat, long, locationPermission]);
   useEffect(() => {
-    const lastUpdate = parseInt(localStorage.getItem("hour"));
     const savedForecast = JSON.parse(localStorage.getItem("forecast"));
     // once the current day's weather has been received, get the rest of the week as long as it hasn't already been updated for that hour and the user has given permission to use the location
-    if (weather && (currentHour !== lastUpdate || !savedForecast || !savedForecast.length) && locationPermission) {
+    if (weather && (!savedForecast || !savedForecast.length) && locationPermission) {
       API.getForecastWeather(long, lat)
-        .then(res => {
+        .then(({data}) => {
           // list of all weather forecast
-          const { list } = res.data;
+          const list = JSON.parse(data.data).list;
           // keep a list of each day
           const nextFiveDays = [];
           //
@@ -102,7 +101,6 @@ function App() {
     const savedLong = localStorage.getItem("long");
     setLat(savedLat);
     setLong(savedLong);
-
     // only update every hour
     if (locationPermission && currentHour !== lastUpdate && savedLat && savedLong) {
       getLocation();
@@ -137,7 +135,7 @@ function App() {
       // if there aren't setting saved, save the defaults to local storage
       localStorage.setItem("settings", JSON.stringify(settings));
     }
-  }, [currentHour]);
+  }, [currentHour, locationPermission]);
   useEffect(() => {
     // every time the setting are updated, save it to local storage
     localStorage.setItem("settings", JSON.stringify(settings));
@@ -148,6 +146,7 @@ function App() {
     // check local storage for saved news
     const savedNews = JSON.parse(localStorage.getItem("news"));
     // if the news hasn't been updated on the current day or if the news has been removed from local storage
+    console.log(savedNews)
     if (lastNewsUpdate !== today || !savedNews) {
       API.getPolitics()
         .then(res => {
@@ -272,8 +271,8 @@ function App() {
         setSettings({ ...settings, showNews: !settings.showNews });
         break;
       case "clockType":
-        if (settings.clockType === 'analog') setSettings({...settings, clockType: 'digital'});
-        else setSettings({...settings, clockType: 'analog'});
+        if (settings.clockType === 'analog') setSettings({ ...settings, clockType: 'digital' });
+        else setSettings({ ...settings, clockType: 'analog' });
         break;
       default:
         return;
@@ -294,7 +293,7 @@ function App() {
   function setBGHeight() {
     let total = 0;
     for (const key in settings) {
-      if (settings[key] && (key !== 'showWeatherBG' || key !== 'showClock' || key !== 'showDate' || key !== "clockType")) total ++;
+      if (settings[key] && (key !== 'showWeatherBG' || key !== 'showClock' || key !== 'showDate' || key !== "clockType")) total++;
       else if (settings[key] && (key === 'showClock' || key === 'showDate')) total += 0.5
     }
     return 100 + (10 * total);
@@ -347,7 +346,7 @@ function App() {
                 <Date />
               ) : (<div />)}
               {settings.showClock ? (
-                <Clock 
+                <Clock
                   type={settings.clockType}
                 />
               ) : (<div />)}

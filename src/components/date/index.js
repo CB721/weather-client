@@ -10,7 +10,7 @@ function Date() {
                     {moment().format("dddd")}
                 </div>
                 <div className="date-section">
-                    {moment().format("MMM, Do")}
+                    {moment().format("MMM. Do")}
                 </div>
             </div>
         </div>

@@ -44,7 +44,7 @@ function Clock({ type = 'analog' }) {
     return (
         <div id="clock-section">
             <div id="clock-bg">
-                <div id="clock">
+                <div id="clock" className={type === 'analog' ? 'analog' : 'digital'}>
                     {type === 'analog' ? (
                         <div>
                             <div className="hour">

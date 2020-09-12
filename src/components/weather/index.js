@@ -29,9 +29,9 @@ function Weather({ today, forecast }) {
                     isToday={true}
                 />
             </div>)}
-            <button id="expand-weather" onClick={(e) => expand(e)}>
+            <div id="expand-weather" onClick={(e) => expand(e)}>
                 {isExpand ? "Hide Forecast" : "Show Forecast"}
-            </button>
+            </div>
         </div>
     )
 }

@@ -7,7 +7,6 @@ function CurrWeather({ timeOfDay, weather }) {
     const [lightClouds, setLightClouds] = useState(false);
     const [darkClouds, setDarkClouds] = useState(false);
     const [rain, setRain] = useState(false);
-    const [mist, setMist] = useState(false);
     const [snow, setSnow] = useState(false);
     const [cloudCount, setCloudCount] = useState(0);
 
@@ -15,9 +14,6 @@ function CurrWeather({ timeOfDay, weather }) {
         const lowerWeatherDesc = weather.weather[0].description.toLowerCase();
         if (lowerWeatherDesc.includes('snow')) {
             setSnow(true);
-        }
-        if (lowerWeatherDesc.includes('mist')) {
-            setMist(true);
         }
         if (lowerWeatherDesc.includes('clouds') && (timeOfDay === "night" || timeOfDay === "sunset")) {
             setDarkClouds(true);
