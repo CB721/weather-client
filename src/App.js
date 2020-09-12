@@ -29,7 +29,7 @@ function App() {
     {
       showDate: true,
       showClock: true,
-      clockType: 'analog',
+      // clockType: 'analog',
       showWeatherBG: false,
       showWeather: true,
       showNews: false
@@ -146,7 +146,6 @@ function App() {
     // check local storage for saved news
     const savedNews = JSON.parse(localStorage.getItem("news"));
     // if the news hasn't been updated on the current day or if the news has been removed from local storage
-    console.log(savedNews)
     if (lastNewsUpdate !== today || !savedNews) {
       API.getPolitics()
         .then(res => {
@@ -347,7 +346,7 @@ function App() {
               ) : (<div />)}
               {settings.showClock ? (
                 <Clock
-                  type={settings.clockType}
+                  type={settings.clockType || 'digital'}
                 />
               ) : (<div />)}
             </div>

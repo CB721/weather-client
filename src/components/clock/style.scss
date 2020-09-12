@@ -4,6 +4,9 @@
     width: 50vw;
     display: flex;
     justify-content: center;
+    @media only screen and (max-width: 500px) {
+        margin-left: 25vw;
+    }
     #clock-bg {
         width: 10vw;
         height: 10vw;
