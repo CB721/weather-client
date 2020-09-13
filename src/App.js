@@ -137,7 +137,6 @@ function App() {
     }
   }, [currentHour, locationPermission]);
   useEffect(() => {
-    console.log('saving settings');
     // every time the setting are updated, save it to local storage
     localStorage.setItem("settings", JSON.stringify(settings));
   }, [settings]);

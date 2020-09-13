@@ -1,6 +1,6 @@
 import axios from "axios";
 import moment from "moment";
-const apiURL = "https://quiet-dusk-19680.herokuapp.com/api/v1/";
+const apiURL = process.env.REACT_APP_API_URL;
 
 export default {
     getTodayWeather: (long, lat) => {

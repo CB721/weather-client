@@ -113,7 +113,7 @@
     }
 }
 .haze-smoke {
-    filter: sepia(60%);
+    filter: sepia(60%) saturate(50%);
 }
 @keyframes day {
     0% {
