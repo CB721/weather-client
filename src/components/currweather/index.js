@@ -26,9 +26,13 @@ function CurrWeather({ timeOfDay, weather }) {
             setDarkClouds(true);
             setLightClouds(false);
         }
+        if (lowerWeatherDesc.includes('haze') || lowerWeatherDesc.includes('smoke')) {
+            setLightClouds(true);
+            setCloudCount(5);
+        }
         setCloudCount(Math.ceil(weather.clouds.all / 10));
     }, [weather, timeOfDay]);
-    return (<div>
+    return (<div style={{ height: '100vh' }}>
         {darkClouds ? (
             <div>
                 {[...Array(cloudCount)].map((cloud, index) => (
@@ -41,12 +45,12 @@ function CurrWeather({ timeOfDay, weather }) {
                     <LightCloud key={index} className="clouds" />
                 ))}
             </div>
-        ) : (<div />)}
+        ) : (<></>)}
         {rain ? (<div>
             {[...Array(150)].map((rain, index) => (
                 <div key={index} className="rain" />
             ))}
-        </div>) : (<div />)}
+        </div>) : (<></>)}
         {snow ? (<div>
             {[...Array(100)].map((snow, index) => (
                 <div key={index} className="snow">❆</div>
@@ -54,7 +58,7 @@ function CurrWeather({ timeOfDay, weather }) {
             {[...Array(100)].map((snow, index) => (
                 <div key={index} className="snow">❅</div>
             ))}
-        </div>) : (<div />)}
+        </div>) : (<></>)}
     </div>);
 }
 

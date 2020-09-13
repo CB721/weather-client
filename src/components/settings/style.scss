@@ -70,10 +70,11 @@
             .setting-section {
                 width: 50%;
                 height: 4rem;
-                line-height: 4rem;
+                line-height: 2rem;
                 text-align: center;
                 text-transform: capitalize;
                 &:nth-child(2n) {
+                    line-height: 4rem;
                     border-left: 1px solid rgb(70, 197, 252);
                     &:hover {
                         cursor: pointer;

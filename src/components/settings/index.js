@@ -2,7 +2,6 @@ import React from 'react';
 import './style.scss';
 
 function Settings({ settings, closeMenu, adjustSetting }) {
-    console.log(Object.keys(settings), settings);
     function convertKey(key) {
         switch (key) {
             case "showDate":

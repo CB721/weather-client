@@ -4,7 +4,7 @@ import './style.scss';
 
 function Backgrounds({ timeOfDay, weather, showCurrWeather, height }) {
     return (
-        <div className={`bg ${timeOfDay}`} style={{'height': `${height}vh`}}>
+        <div className={`bg ${timeOfDay}  ${weather.weather[0].description.toLowerCase().includes('haze') || weather.weather[0].description.toLowerCase().includes('smoke') ? 'haze-smoke' : ''}`} style={{ 'height': `${height}vh` }}>
             {timeOfDay === 'sunrise' || timeOfDay === 'day' ? (
                 <div className="day-items">
                     <div className={`sun ${timeOfDay} `} />

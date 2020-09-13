@@ -7,6 +7,8 @@
     width: 100vw;
     @include day-bg();
     .day-items {
+        height: 100vh;
+        width: 100vw;
         .sun {
             position: absolute;
             width: 10vmax;
@@ -109,6 +111,9 @@
     @media only screen and (max-width: 500px) {
         height: 300vh;
     }
+}
+.haze-smoke {
+    filter: sepia(60%);
 }
 @keyframes day {
     0% {
